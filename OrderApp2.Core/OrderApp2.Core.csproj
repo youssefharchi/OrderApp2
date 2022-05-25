@@ -7,14 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Dto\" />
     <Folder Include="Application\Exceptions\" />
     <Folder Include="Application\Interfaces\" />
     <Folder Include="Application\Mapping\" />
     <Folder Include="Application\Wrappers\" />
     <Folder Include="Application\Services\" />
     <Folder Include="Domain\Common\" />
-    <Folder Include="Domain\Entities\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,10 +22,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
   </ItemGroup>
 
 </Project>
