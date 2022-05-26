@@ -8,15 +8,13 @@
 
   <ItemGroup>
     <Folder Include="Application\Exceptions\" />
-    <Folder Include="Application\Interfaces\" />
-    <Folder Include="Application\Mapping\" />
     <Folder Include="Application\Wrappers\" />
-    <Folder Include="Application\Services\" />
     <Folder Include="Domain\Common\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
       <PrivateAssets>all</PrivateAssets>
