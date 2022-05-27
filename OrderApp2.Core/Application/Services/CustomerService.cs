@@ -1,7 +1,6 @@
 ﻿using OrderApp2.Core.Application.Dto;
 using OrderApp2.Core.Application.Interfaces;
 using OrderApp2.Core.Domain.Entities;
-
 using AutoMapper;
 
 namespace OrderApp2.Core.Application.Services
@@ -20,31 +19,27 @@ namespace OrderApp2.Core.Application.Services
         public bool CreateCustomer(CustomerDto newCustomer)
         {
             var customer = _mapper.Map<Customer>(newCustomer);
-            return _customerRepository.CreateCustomer(customer);
+            return _customerRepository.Insert(customer);
         }
 
         public bool CustomerExists(int customerId)
         {
-            return _customerRepository.CustomerExists(customerId);
+            return _customerRepository.Exists(customerId);
         }
 
         public bool DeleteCustomer(int deletedCustomerId)
         {
-            var customer = _customerRepository.GetCustomer(deletedCustomerId);
-            if (customer != null)
-                return _customerRepository.DeleteCustomer(customer);
-
-            return false;
+            return _customerRepository.Delete(deletedCustomerId);
         }
 
         public ICollection<CustomerDto> GetAllCustomers()
         {
-            return _mapper.Map<ICollection<CustomerDto>>(_customerRepository.GetCustomers().ToList());
+            return _mapper.Map<ICollection<CustomerDto>>(_customerRepository.GetAll().ToList());
         }
 
         public CustomerDto GetCustomer(int customerId)
         {
-            return _mapper.Map<CustomerDto>(_customerRepository.GetCustomer(customerId));
+            return _mapper.Map<CustomerDto>(_customerRepository.GetById(customerId));
         }
 
         public ICollection<CustomerDto> GetCustomersByItem(int itemId)
@@ -52,11 +47,10 @@ namespace OrderApp2.Core.Application.Services
             return _mapper.Map<ICollection<CustomerDto>>(_customerRepository.GetCustomersByItem(itemId).ToList());
         }
 
-        public bool UpdateCustomer(int customerId, CustomerDto updatedCustomer)
+        public bool UpdateCustomer(CustomerDto updatedCustomer)
         {
             var customer = _mapper.Map<Customer>(updatedCustomer);
-            customer.CustomerId = customerId;
-            return _customerRepository.UpdateCustomer(customer);
+            return _customerRepository.Update(customer);
         }
     }
 }

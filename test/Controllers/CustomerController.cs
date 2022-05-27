@@ -46,15 +46,15 @@ namespace OrderApp2.WebApi.Controllers
             return Ok(_customerService.GetCustomersByItem(itemId));
         }
 
-        [HttpPut("/PutCustomer/{customerId}")]
+        [HttpPut("/PutCustomer")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public IActionResult UpdateCustomer(int customerId, [FromBody] CustomerDto updatedCustomer)
+        public IActionResult UpdateCustomer([FromBody] CustomerDto updatedCustomer)
         {
-            if (!_customerService.CustomerExists(customerId))
+            if (!_customerService.CustomerExists(updatedCustomer.CustomerId))
                 return NotFound();
-            if (!_customerService.UpdateCustomer(customerId, updatedCustomer))
+            if (!_customerService.UpdateCustomer(updatedCustomer))
             {
                 ModelState.AddModelError("", "Something went wrong while saving");
                 return StatusCode(500, ModelState);

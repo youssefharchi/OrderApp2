@@ -2,24 +2,10 @@
 
 namespace OrderApp2.Core.Application.Interfaces
 {
-    public interface IOrderRepository
+    public interface IOrderRepository : IGenericRepository<Order>
     {
-        IQueryable<Order> GetOrders();
+        IQueryable<Order?> GetOrderByItem(int ItemId);
 
-        Order GetOrder(int id);
-
-        bool OrderExists(int id);
-
-        bool CreateOrder(int CustomerId, Order order);
-
-        bool UpdateOrder(int CustomerId, Order order);
-
-        bool DeleteOrder(Order Order);
-
-        bool Save();
-
-        ICollection<Order> GetOrderByItem(int ItemId);
-
-        ICollection<Order> GetOrdersByCustomer(int customerId);
+        IQueryable<Order> GetOrdersByCustomer(int customerId);
     }
 }

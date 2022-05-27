@@ -1,9 +1,9 @@
 using OredApp2.Infrastructure.Persistance.DBContext;
 using Microsoft.EntityFrameworkCore;
 using OrderApp2.Core.Application.Interfaces;
-using OredApp2.Infrastructure.Persistance.Reposit;
 using OrderApp2.Core.Application.Services;
 using OrderApp2.Core.Application.Mapping;
+using OredApp2.Infrastructure.Persistance.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +16,9 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
 
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IItemService, ItemService>();
+builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 

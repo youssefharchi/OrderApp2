@@ -2,60 +2,27 @@
 using OrderApp2.Core.Domain.Entities;
 using OredApp2.Infrastructure.Persistance.DBContext;
 
-namespace OredApp2.Infrastructure.Persistance.Reposit
+namespace OredApp2.Infrastructure.Persistance.Repositories
 {
-    public class OrderRepository : IOrderRepository
+    public class OrderRepository : GenericRepository<Order>, IOrderRepository
     {
         private readonly DataContext _dataContext;
 
-        public OrderRepository(DataContext dataContext)
+        public OrderRepository(DataContext dataContext) : base(dataContext)
         {
             _dataContext = dataContext;
         }
 
-        public bool CreateOrder(int CustomerId, Order order)
+        public IQueryable<Order?> GetOrderByItem(int ItemId)
         {
-            throw new NotImplementedException();
+            var orders = _dataContext.OrderDetails.Where(c => c.ItemId == ItemId).Select(o => o.order);
+            return orders;
         }
 
-        public bool DeleteOrder(Order Order)
+        public IQueryable<Order> GetOrdersByCustomer(int customerId)
         {
-            throw new NotImplementedException();
-        }
-
-        public Order GetOrder(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ICollection<Order> GetOrderByItem(int ItemId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<Order> GetOrders()
-        {
-            throw new NotImplementedException();
-        }
-
-        public ICollection<Order> GetOrdersByCustomer(int customerId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool OrderExists(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool UpdateOrder(int CustomerId, Order order)
-        {
-            throw new NotImplementedException();
+            var orders = _dataContext.Orders.Where(o => o.CustomerId == customerId);
+            return orders;
         }
     }
 }

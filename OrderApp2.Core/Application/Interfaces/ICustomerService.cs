@@ -6,7 +6,7 @@ namespace OrderApp2.Core.Application.Interfaces
     {
         public bool CreateCustomer(CustomerDto newCustomer);
 
-        public bool UpdateCustomer(int customerId, CustomerDto updatedCustomer);
+        public bool UpdateCustomer(CustomerDto updatedCustomer);
 
         public bool DeleteCustomer(int deletedCustomerId);
 

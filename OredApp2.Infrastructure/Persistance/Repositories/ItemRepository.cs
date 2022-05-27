@@ -2,55 +2,21 @@
 using OrderApp2.Core.Domain.Entities;
 using OredApp2.Infrastructure.Persistance.DBContext;
 
-namespace OredApp2.Infrastructure.Persistance.Reposit
+namespace OredApp2.Infrastructure.Persistance.Repositories
 {
-    public class ItemRepository : IItemRepository
+    public class ItemRepository : GenericRepository<Item>, IItemRepository
     {
-        private readonly DataContext _dataContext;
+        private readonly DataContext _context;
 
-        public ItemRepository(DataContext dataContext)
+        public ItemRepository(DataContext dataContext) : base(dataContext)
         {
-            _dataContext = dataContext;
+            _context = dataContext;
         }
 
-        public bool CreateItem(Item item)
+        public IQueryable<Item?> GetItemsByOrder(int OrderId)
         {
-            throw new NotImplementedException();
-        }
-
-        public bool DeleteItem(Item Item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Item GetItem(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<Item> GetItems()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<Item> GetItemsByOrder(int OrderId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool ItemExists(int Id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool UpdateItem(Item item)
-        {
-            throw new NotImplementedException();
+            var items = _context.OrderDetails.Where(d => d.OrderId == OrderId).Select(c => c.item);
+            return items;
         }
     }
 }

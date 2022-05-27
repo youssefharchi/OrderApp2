@@ -1,23 +1,10 @@
 ﻿using OrderApp2.Core.Domain.Entities;
+using OrderApp2.Core.Application.Interfaces;
 
 namespace OrderApp2.Core.Application.Interfaces
 {
-    public interface ICustomerRepository
+    public interface ICustomerRepository : IGenericRepository<Customer>
     {
-        IQueryable<Customer> GetCustomers();
-
-        Customer? GetCustomer(int id);
-
-        bool CreateCustomer(Customer customer);
-
-        bool UpdateCustomer(Customer customer);
-
-        bool DeleteCustomer(Customer customer);
-
         IQueryable<Customer> GetCustomersByItem(int ItemId);
-
-        bool Save();
-
-        bool CustomerExists(int id);
     }
 }
